@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudarshan K M - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #448aff 0%, #8a2be2 100%); /* Blue to Violet */
+            --secondary-gradient: linear-gradient(45deg, #00c6ff, #0072ff); /* Aqua to Blue */
+            --accent-gradient: linear-gradient(90deg, #ff00ff, #00ffff); /* Magenta to Cyan */
+            --neon-cyan: #00f5ff;
+            --neon-pink: #ff10f0;
+            --neon-purple: #bf00ff;
+            --dark-bg: rgba(0, 0, 0, 0.9);
+            --glass-bg: rgba(255, 255, 255, 0.05); /* More transparent glass */
+            --glass-border: rgba(255, 255, 255, 0.1); /* Lighter border */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000; /* Solid black for backdrop if video doesn't cover all */
+            color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Background Video */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.7; /* Increased opacity for clearer visibility */
+        }
+
+        /* Remove the .bg-overlay as requested */
+
+        /* Advanced Particle System */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: particleFloat 15s infinite linear;
+        }
+
+        .particle.neon-cyan { background: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); }
+        .particle.neon-pink { background: var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); }
+        .particle.neon-purple { background: var(--neon-purple); box-shadow: 0 0 15px var(--neon-purple); }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% {
+                transform: translate(100px, -100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation Menu */
+        .nav-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 10px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 12px 20px;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1; /* Ensure text is above pseudo-element */
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient); /* Use accent gradient for nav hover */
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            left: 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.2);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            backdrop-filter: blur(20px);
+            position: fixed; /* Keep it fixed for mobile */
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            font-size: 1.5rem;
+            line-height: 1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Welcome Section - Fashionable Update */
+        .welcome-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 1rem; /* Add padding for smaller screens */
+        }
+
+        .welcome-content {
+            /* background: rgba(0, 0, 0, 0.6); Darker, more opaque background */
+            /* backdrop-filter: blur(30px); */
+            /* border: 1px solid var(--glass-border);
+            border-radius: 20px; Slightly less rounded */
+            padding: 5rem 3rem; /* More generous padding */
+            /* box-shadow: 0 30px 80px rgba(0,0,0,0.5); Stronger shadow */
+            animation: scaleUpFadeIn 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards; /* Smoother animation curve */
+            opacity: 0;
+            transform: scale(0.9);
+            max-width: 800px; /* Constrain width */
+            width: 90%; /* Responsive width */
+        }
+
+        @keyframes scaleUpFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .profile-avatar-small {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem; /* Center and add space */
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .avatar-inner-small {
+            width: 100%;
+            height: 100%;
+            background: var(--secondary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255,255,255,0.8);
+            box-shadow: 0 0 30px var(--neon-cyan);
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .avatar-inner-small:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 40px var(--neon-pink);
+            border-color: var(--neon-pink);
+        }
+        /* No continuous spin for this small avatar, rely on hover */
+
+        .welcome-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 4.5rem; /* Larger, more impactful */
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem; /* Closer to tagline */
+            text-shadow: none; /* Let the gradient handle the "glow" */
+            animation: fadeInScale 1.5s cubic-bezier(0.23, 1, 0.32, 1) 0.5s forwards; /* Delayed animation */
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .welcome-tagline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            animation: fadeIn 1.5s ease-out 0.8s forwards;
+            opacity: 0;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2.5rem; /* Space before links */
+            animation: fadeIn 1.5s ease-out 1s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem; /* Space out icons */
+            margin-top: 2rem;
+            animation: fadeIn 1.5s ease-out 1.2s forwards; /* Delayed fade in */
+            opacity: 0;
+        }
+
+        .icon-link {
+            color: var(--neon-purple); /* Neon color for icons */
+            width: 48px; /* Larger hit area */
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.08); /* Subtle background */
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(191,0,255,0.2);
+        }
+
+        .icon-link svg {
+            stroke-width: 1.8; /* Make icons slightly bolder */
+            width: 28px; /* Icon size */
+            height: 28px;
+        }
+
+        .icon-link:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 0 25px var(--neon-cyan); /* Different glow on hover */
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan); /* Change icon color on hover */
+        }
+
+
+        /* Section Styles with Advanced 3D */
+        .section {
+            min-height: 100vh;
+            padding: 8rem 2rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .section-header.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 150px;
+            height: 4px;
+            background: var(--secondary-gradient);
+            transform: translateX(-50%);
+            border-radius: 2px;
+            animation: titleUnderline 2s ease-out;
+        }
+
+        @keyframes titleUnderline {
+            0% { width: 0; }
+            100% { width: 150px; }
+        }
+
+        /* 3D Card System */
+        .card-3d {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .card-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--secondary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .card-3d:hover::before {
+            opacity: 0.1;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-20px) rotateX(5deg) rotateY(3deg) translateZ(30px); /* Slightly less aggressive rotation */
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+            border-color: var(--neon-purple);
+        }
+        .card-3d h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--neon-cyan); /* Consistent heading color */
+        }
+        .card-3d p, .card-3d ul {
+            font-size: 1.05rem; /* Slightly larger text */
+            line-height: 1.7;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Projects Grid with Video Backgrounds */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Slightly smaller min-width */
+            gap: 2.5rem; /* Reduced gap */
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 0;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .project-video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+            display: block; /* Remove extra space below video */
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(3deg) scale(1.03); /* More subtle */
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            border-color: var(--neon-pink);
+        }
+
+        .project-card:hover .project-video {
+            transform: scale(1.05); /* Less aggressive zoom */
+        }
+
+        .project-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .project-link {
+            display: inline-block;
+            background: var(--secondary-gradient);
+            color: #fff;
+            padding: 10px 20px; /* Smaller padding */
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.95rem; /* Smaller font */
+        }
+
+        .project-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); /* Lighter shimmer */
+            transition: left 0.5s ease;
+        }
+
+        .project-link:hover::before {
+            left: 100%;
+        }
+
+        .project-link:hover {
+            transform: translateY(-3px) scale(1.08); /* More subtle lift */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Skills with Neon Effects */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted min-width */
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 2.5rem; /* Slightly less padding */
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, var(--neon-cyan), transparent, var(--neon-pink), transparent);
+            animation: skillRotate 10s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1; /* Ensure text is above */
+        }
+
+        .skill-category:hover::before {
+            opacity: 0.1;
+        }
+
+        @keyframes skillRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px) scale(1.03); /* More subtle */
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border-color: var(--neon-purple);
+        }
+
+        .skill-category h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem; /* Slightly smaller */
+            font-weight: 700;
+            color: var(--neon-pink);
+            margin-bottom: 1.5rem; /* Reduced margin */
+            text-align: center;
+            text-shadow: 0 0 15px var(--neon-pink);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem; /* Slightly smaller gap */
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            color: #fff;
+            padding: 7px 14px; /* Smaller padding */
+            border-radius: 18px; /* Slightly less rounded */
+            font-size: 0.8rem; /* Smaller font */
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0,245,255,0.2);
+            z-index: 1;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .skill-tag:hover::before {
+            left: 100%;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px) scale(1.08); /* More subtle */
+            box-shadow: 0 8px 20px rgba(0,245,255,0.4);
+        }
+
+        /* Download Button with 3D Effect */
+        .download-section {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: var(--accent-gradient); /* Use accent gradient */
+            color: #fff;
+            padding: 18px 35px; /* Slightly smaller padding */
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem; /* Slightly smaller font */
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transform-style: preserve-3d;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-8px) scale(1.07) rotateX(5deg); /* More subtle */
+            box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--accent-gradient); /* Use accent gradient */
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+
+        /* Smooth Scroll Animations (General) */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1); /* Consistent ease */
+        }
+
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                display: none; /* Hide full nav on small screens */
+            }
+
+            .menu-toggle {
+                display: block; /* Show toggle button */
+            }
+
+            /* Styles for the mobile-only menu when open */
+            .nav-container.mobile-open {
+                display: block;
+                position: fixed;
+                top: 80px; /* Below the toggle button */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 300px;
+                border-radius: 20px;
+                padding: 10px 0;
+                background: var(--dark-bg); /* Darker background for mobile menu */
+                border: 1px solid var(--glass-border);
+                box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+                backdrop-filter: blur(20px);
+                animation: fadeInSlideDown 0.5s ease-out forwards; /* Mobile menu animation */
+            }
+
+            @keyframes fadeInSlideDown {
+                0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+                100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            }
+
+            .nav-container.mobile-open .nav-menu {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .nav-container.mobile-open .nav-link {
+                padding: 10px 15px;
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .welcome-title {
+                font-size: 3rem; /* Adjust for smaller screens */
+            }
+            .welcome-tagline {
+                font-size: 1.4rem;
+            }
+            .welcome-subtitle {
+                font-size: 0.95rem;
+            }
+            .welcome-content {
+                padding: 3rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+            .card-3d, .project-card, .skill-category {
+                padding: 2rem;
+            }
+            .download-btn {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 2.2rem;
+            }
+            .welcome-tagline {
+                font-size: 1.2rem;
+            }
+            .icon-link {
+                width: 40px;
+                height: 40px;
+            }
+            .icon-link svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.3);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gradient);
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0,255,255,0.5);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-gradient);
+        }
+    </style>
+</head>
+<body>
+    <video class="bg-video" autoplay muted loop>
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div class="particles-container" id="particlesContainer"></div>
+
+    <nav class="nav-container" id="navContainer">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+            <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+            <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+            <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+        </ul>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle">☰</button>
+
+    <section class="welcome-section" id="home">
+        <div class="welcome-content">
+            <h1 class="welcome-title">Sudarshan K M</h1>
+            <p class="welcome-tagline">
+                Innovating at the Intersection of Code & Operations
+            </p>
+            <p class="welcome-subtitle">
+                BCA Graduate | Web Developer | Operations Enthusiast
+            </p>
+
+            <div class="profile-avatar-small">
+                <div class="avatar-inner-small">SK</div>
+            </div>
+
+            <div class="contact-links">
+                <a href="mailto:kmragusudarshan@gmail.com" class="icon-link" aria-label="Email">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+                <a href="tel:+917676045748" class="icon-link" aria-label="Phone">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </a>
+                <a href="https://linkedin.com/in/sudarshan-k-m" target="_blank" class="icon-link" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="https://github.com/sudarshan-km" target="_blank" class="icon-link" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 3S18.73 2 12 2c-6.73 0-7.91 1-7.91 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+                <a href="https://type.link/kmragusudarshan" target="_blank" class="icon-link" aria-label="Portfolio">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="section-header scroll-animate">
+            <h2 class="section-title">About Me</h2>
+        </div>
+        <div class="card-3d scroll-animate">
+            <h3>Profile Overview</h3>
+            <p>
+                I'm a motivated BCA graduate from SDM College, Ujire, with an impressive CGPA of 9.17. My passion lies in web development and business process coordination, where I combine technical expertise with strong analytical skills.
+            </p>
+            <p>
+                With hands-on experience in React.js development and a solid foundation in various programming languages, I'm actively seeking entry-level roles in operations or business process coordination where I can contribute to organizational growth while continuing to develop my technical skills.
+            </p>
+            <p>
+                My detail-oriented approach and collaborative mindset make me an ideal candidate for dynamic work environments that value innovation and continuous learning.
+            </p>
+        </div>
+    </section>
+
+    <section class="section" id="projects">
+        <div class="section-header scroll-animate">
+            <h2 class="section-title">Featured Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card scroll-animate">
+                <video class="project-video" autoplay muted loop>
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="project-content">
+                    <h4 class="project-title">Post Creation Tool</h4>
+                    <p>A comprehensive React.js-based application designed for managing digital content with seamless API integration. Features include content creation, editing, and publishing workflows.</p>
+                    <a href="https://post-creation.vercel.app/" target="_blank" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+
+            <div class="project-card scroll-animate">
+                <video class="project-video" autoplay muted loop>
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="project-content">
+                    <h4 class="project-title">To-Do List App</h4>
+                    <p>An intuitive JavaScript-powered task management application that helps users organize, prioritize, and track their daily activities with a clean, user-friendly interface.</p>
+                    <a href="https://to-dolist-jet-nu.vercel.app/" target="_blank" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+
+            <div class="project-card scroll-animate">
+                <video class="project-video" autoplay muted loop>
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="project-content">
+                    <h4 class="project-title">Tasty Corner</h4>
+                    <p>A feature-rich recipe-sharing platform with advanced search and filter capabilities, allowing food enthusiasts to discover, share, and organize their favorite recipes.</p>
+                    <a href="https://cook-your-dish.vercel.app/" target="_blank" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="skills">
+        <div class="section-header scroll-animate">
+            <h2 class="section-title">Skills & Expertise</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category scroll-animate">
+                <h3>Technical Skills</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">React.js</span>
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">Git & GitHub</span>
+                    <span class="skill-tag">Responsive Design</span>
+                    <span class="skill-tag">API Integration</span>
+                </div>
+            </div>
+            <div class="skill-category scroll-animate">
+                <h3>Business & Operations Skills</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">SAP Basics</span>
+                    <span class="skill-tag">Microsoft Excel</span>
+                    <span class="skill-tag">Zoho CRM</span>
+                    <span class="skill-tag">SEO Fundamentals</span>
+                    <span class="skill-tag">Business Process Optimization</span>
+                    <span class="skill-tag">Data Entry & Management</span>
+                    <span class="skill-tag">Customer Relationship Management</span>
+                </div>
+            </div>
+            <div class="skill-category scroll-animate">
+                <h3>Soft Skills</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Effective Communication</span>
+                    <span class="skill-tag">Problem Solving</span>
+                    <span class="skill-tag">Team Collaboration</span>
+                    <span class="skill-tag">Time Management</span>
+                    <span class="skill-tag">Adaptability</span>
+                    <span class="skill-tag">Critical Thinking</span>
+                    <span class="skill-tag">Leadership Potential</span>
+                    <span class="skill-tag">Detail-Oriented</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="experience">
+        <div class="section-header scroll-animate">
+            <h2 class="section-title">Experience</h2>
+        </div>
+        <div class="card-3d scroll-animate">
+            <h3>React Developer Intern</h3>
+            <p><strong>Code Lab System, Mangalore</strong></p>
+            <p style="font-size: 0.95rem; margin-bottom: 1rem; color: rgba(255,255,255,0.7);"><em>Dec 2024 – Jan 2024</em></p>
+            <ul>
+                <li>Collaborated effectively with cross-functional teams to develop and maintain React.js applications, ensuring modularity and scalability.</li>
+                <li>Focused on optimizing module communication and implementing milestone-based project execution to meet deadlines and deliverables.</li>
+                <li>Maintained high code quality standards through rigorous testing, code reviews, and adherence to best practices in front-end development.</li>
+                <li>Gained valuable hands-on experience in agile development methodologies and proficiently utilized version control systems like Git and GitHub.</li>
+            </ul>
+        </div>
+        <div class="card-3d scroll-animate">
+            <h3>Student-Faculty Teaching Assistant</h3>
+            <p><strong>SDM College, Ujire</strong></p>
+            <p style="font-size: 0.95rem; margin-bottom: 1rem; color: rgba(255,255,255,0.7);"><em> Oct 2024 – Mar 2025</em></p>
+            <ul>
+                <li>Provided foundational instruction in C and Java programming languages to fellow students, facilitating understanding of complex concepts.</li>
+                <li>Developed clear and concise teaching materials and conducted engaging hands-on coding sessions to reinforce learning.</li>
+                <li>Helped students grasp fundamental programming concepts, debugging techniques, and problem-solving strategies.</li>
+                <li>This experience significantly enhanced my communication skills, fostered a deeper understanding of core programming principles, and developed my ability to explain technical topics effectively.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="download-section">
+        <a href="https://drive.google.com/file/d/1OdVzTNzb27WnQqmSosPUxMhFZIwsMZFO/view?usp=drive_link" class="download-btn" download="Sudarshan_KM_Resume.pdf">
+            📄 Download My Resume
+        </a>
+        <p style="color: rgba(255,255,255,0.7); margin-top: 1rem; font-family: 'Space Grotesk', sans-serif;">Click to download my detailed resume.</p>
+    </section>
+
+    <script>
+        // Particle System Generation
+        function createParticles() {
+            const container = document.getElementById('particlesContainer');
+            const particleColors = ['neon-cyan', 'neon-pink', 'neon-purple'];
+            const numberOfParticles = 80;
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle', particleColors[Math.floor(Math.random() * particleColors.length)]);
+                particle.style.width = `${Math.random() * 5 + 3}px`;
+                particle.style.height = particle.style.width;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`; // Start anywhere on screen
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`; // 10-20 seconds
+                container.appendChild(particle);
+            }
+        }
+
+        // Intersection Observer for scroll animations (animate class)
+        const animateObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, {
+            threshold: 0.15, // Trigger when 15% of the element is visible
+            rootMargin: '0px 0px -50px 0px' // Reduce false positives at bottom of viewport
+        });
+
+        document.querySelectorAll('.scroll-animate, .section-header').forEach(element => {
+            animateObserver.observe(element);
+        });
+
+        // Scroll Progress Indicator
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / totalHeight) * 100;
+            scrollProgress.style.width = `${progress}%`;
+        });
+
+        // Active Nav Link on Scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) { // Adjust as needed
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.href.includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile Menu Toggle Logic
+        const menuToggle = document.getElementById('menuToggle');
+        const navContainer = document.getElementById('navContainer');
+
+        menuToggle.addEventListener('click', () => {
+            navContainer.classList.toggle('mobile-open');
+            // Change toggle icon
+            menuToggle.textContent = navContainer.classList.contains('mobile-open') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navContainer.classList.contains('mobile-open')) {
+                    navContainer.classList.remove('mobile-open');
+                    menuToggle.textContent = '☰';
+                }
+            });
+        });
+
+        // Download Resume Placeholder
+        function downloadResume() {
+            // In a real scenario, replace 'https://drive.google.com/file/d/1OdVzTNzb27WnQqmSosPUxMhFZIwsMZFO/view?usp=drive_link' with the actual path
+            // window.open('https://drive.google.com/file/d/1OdVzTNzb27WnQqmSosPUxMhFZIwsMZFO/view?usp=drive_link', '_blank');
+            alert('Resume download functionality would go here! Please replace the href in the HTML with your actual resume file.');
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            // Ensure initial scroll position updates active nav link
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+</html>
